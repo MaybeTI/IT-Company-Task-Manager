@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 
-from company.models import Worker, TaskType, Task, Position
+from task_manager.models import Worker, TaskType, Task, Position
 
 admin.site.unregister(Group)
 

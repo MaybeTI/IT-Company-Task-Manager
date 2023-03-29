@@ -30,7 +30,7 @@
             <div class="nav-wrapper position-relative end-0">
               <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                 <li class="nav-item">
-                  <a href="{% url 'company:task-update' pk=task.id %}">
+                  <a href="{% url 'task_manager:task-update' pk=task.id %}">
                     <svg class="text-dark" width="16px" height="16px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -50,7 +50,7 @@
                 </li>
                 </a>
                 <li class="nav-item">
-                  <a href="{% url 'company:task-delete' pk=task.id %}">
+                  <a href="{% url 'task_manager:task-delete' pk=task.id %}">
                     <svg class="text-dark" width="16px" height="16px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                       <title>document</title>
                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -99,7 +99,7 @@
                   <h6 class="mb-0">Task team</h6>
                 </div>
                 <div class="col-md-4 text-end">
-                  <a href="{% url 'company:task-update-workers' pk=task.id %}">
+                  <a href="{% url 'task_manager:task-update-workers' pk=task.id %}">
                     <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit "></i>
                   </a>
                 </div>

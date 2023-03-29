@@ -19,7 +19,7 @@
 
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
-                  <span class="ms-1 font-weight-bold"><a href="{% url 'company:task-create' %}">Create task</a></span>
+                  <span class="ms-1 font-weight-bold"><a href="{% url 'task_manager:task-create' %}">Create task</a></span>
                 </div>
               </div>
             </div>
@@ -42,12 +42,12 @@
                         <td>
                           <div class="d-flex px-2 py-1">
                             <div>
-                              <a href="{% url 'company:task-detail' pk=task.id %}">
+                              <a href="{% url 'task_manager:task-detail' pk=task.id %}">
                                 <img src="{{ ASSETS_ROOT }}/img/task.png" class="avatar avatar-sm me-3" alt="xd">
                               </a>
                             </div>
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm"><a href="{% url 'company:task-detail' pk=task.id %}">{{ task.name }}</a></h6>
+                              <h6 class="mb-0 text-sm"><a href="{% url 'task_manager:task-detail' pk=task.id %}">{{ task.name }}</a></h6>
                             </div>
                           </div>
                         </td>
@@ -78,7 +78,7 @@
                           </div>
                         </td>
                         <td class="align-middle">
-                          <a href="{% url 'company:task-update' pk=task.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <a href="{% url 'task_manager:task-update' pk=task.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                             Update
                           </a>
                         </td>

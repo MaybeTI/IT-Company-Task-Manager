@@ -42,7 +42,7 @@
                     {% if msg %}
                       <span class="text-danger">{{ msg | safe }}</span>
                     {% else %}
-                      Update your credentials
+                      {{ object|yesno:"Update,Create" }} your credentials
                     {% endif %}
                   </p>
                 </div>
@@ -75,6 +75,20 @@
                         {{ form.email }}
                       </div>
                       <span class="text-danger">{{ form.email.errors }}</span>
+                      {% if not object %}
+
+                      <label>Password</label>
+                      <div class="mb-3">
+                        {{ form.password1 }}
+                      </div>
+                      <span class="text-danger">{{ form.password1.errors }}</span>
+
+                      <label>Password</label>
+                      <div class="mb-3">
+                        {{ form.password2 }}
+                      </div>
+                      <span class="text-danger">{{ form.password2.errors }}</span>
+                       {% endif %}
 
                       <label>Position</label>
                       <div class="mb-3">
