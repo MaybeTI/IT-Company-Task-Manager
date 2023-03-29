@@ -20,5 +20,6 @@ from it_company import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("company.urls", namespace="company"))
+    path("account/", include("django.contrib.auth.urls")),
+    path("", include("company.urls", namespace="company")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
