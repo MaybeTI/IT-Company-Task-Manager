@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %} Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="container-fluid py-4">
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>Task list</h6>
+
+                </div>
+                <div class="col-lg-6 col-5 my-auto text-end">
+                  <span class="ms-1 font-weight-bold"><a href="{% url 'company:task-create' %}">Create task</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tasks</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-10">Task type</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is completed</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0">Priority</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for task in task_list %}
+
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div>
+                              <a href="{% url 'company:task-detail' pk=task.id %}">
+                                <img src="{{ ASSETS_ROOT }}/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
+                              </a>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm"><a href="{% url 'company:task-detail' pk=task.id %}">{{ task.name }}</a></h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class="text-xs font-weight-bold"> {{ task.task_type }} </span>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class="text-xs font-weight-bold"> {% if task.is_completed %} ✅ {% else %} ❌ {% endif %}  </span>
+                        </td>
+                        <td class="align-middle">
+                          <div class="progress-wrapper w-75 mx-auto">
+                            <div class="progress-info">
+                              <div class="progress-percentage">
+                                <span class="text-xs font-weight-bold">{{ task.priority }}</span>
+                              </div>
+                            </div>
+                            <div class="progress">
+                              {% if task.priority == "Low" %}
+                                <div class="progress-bar bg-success w-100" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                              {% elif task.priority == "Middle" %}
+                                <div class="progress-bar  w-100" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                              {% elif task.priority == "High" %}
+                                <div class="progress-bar bg-danger w-100" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                              {% endif %}
+
+                            </div>
+
+                          </div>
+                        </td>
+                        <td class="align-middle">
+                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            Edit
+                          </a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
