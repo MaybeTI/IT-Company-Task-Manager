@@ -7,7 +7,6 @@ from django.contrib.auth import get_user_model
 
 
 def index(request):
-
     return render(request, "company/index.html")
 
 
@@ -25,19 +24,36 @@ class TaskCreate(generic.CreateView):
     success_url = reverse_lazy("company:task-list")
 
 
+class TaskUpdate(generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+
+    def get_success_url(self):
+        return reverse_lazy("company:task-detail", kwargs={"pk": self.request.user.id})
+
+
+class TaskDelete(generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("company:task-list")
+
+
 class TaskUpdateWorkers(generic.UpdateView):
     model = Task
     form_class = TaskUpdateWorkersForm
     template_name = "company/task_detail.html"
 
-    def get_success_url(self, *args, **kwargs):
-        return reverse_lazy(
-            "company:task-detail",
-            kwargs={
-                "pk": self.request.user.id
-            }
-        )
+    def get_success_url(self):
+        return reverse_lazy("company:task-detail", kwargs={"pk": self.request.user.id})
 
 
 class WorkerList(generic.ListView):
     model = get_user_model()
+
+
+class WorkerDetail(generic.DetailView):
+    model = get_user_model()
+
+
+class WorkerUpdate(generic.UpdateView):
+    model = get_user_model()
+
