@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    return render(request, "company/index.html")
+    return render(request, "task_manager/index.html")
 
 
 class TaskList(LoginRequiredMixin, generic.ListView):
@@ -47,7 +47,7 @@ class TaskDelete(LoginRequiredMixin, generic.DeleteView):
 class TaskUpdateWorkers(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = TaskUpdateWorkersForm
-    template_name = "company/task_detail.html"
+    template_name = "task_manager/task_detail.html"
 
     def get_success_url(self):
         return reverse_lazy("task_manager:task-detail", kwargs={"pk": self.request.user.id})
@@ -76,7 +76,7 @@ class WorkerUpdate(LoginRequiredMixin, generic.UpdateView):
 class WorkerUpdateDescription(LoginRequiredMixin, generic.UpdateView):
     model = get_user_model()
     form_class = WorkerUpdateDescriptionForm
-    template_name = "company/worker_detail.html"
+    template_name = "task_manager/worker_detail.html"
 
     def get_success_url(self):
         return reverse_lazy(
