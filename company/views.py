@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from company.forms import TaskForm, TaskUpdateWorkersForm
+from company.forms import TaskForm, TaskUpdateWorkersForm, WorkerCreateForm, WorkerUpdateForm
 from company.models import Task
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
@@ -27,9 +27,7 @@ class TaskCreate(generic.CreateView):
 class TaskUpdate(generic.UpdateView):
     model = Task
     form_class = TaskForm
-
-    def get_success_url(self):
-        return reverse_lazy("company:task-detail", kwargs={"pk": self.request.user.id})
+    success_url = reverse_lazy("company:task-list")
 
 
 class TaskDelete(generic.DeleteView):
@@ -54,6 +52,13 @@ class WorkerDetail(generic.DetailView):
     model = get_user_model()
 
 
+class WorkerCreate(generic.CreateView):
+    model = get_user_model()
+    form_class = WorkerCreateForm
+    success_url = reverse_lazy("company:index")
+
+
 class WorkerUpdate(generic.UpdateView):
     model = get_user_model()
-
+    form_class = WorkerUpdateForm
+    success_url = reverse_lazy("company:worker-list")

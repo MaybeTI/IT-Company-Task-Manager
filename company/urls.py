@@ -10,6 +10,7 @@ from company.views import (
     TaskUpdateWorkers,
     WorkerList,
     WorkerDetail,
+    WorkerCreate,
     WorkerUpdate,
 )
 
@@ -27,6 +28,7 @@ urlpatterns = [
     ),
     path("worker/list/", WorkerList.as_view(), name="worker-list"),
     path("worker/detail/<int:pk>/", WorkerDetail.as_view(), name="worker-detail"),
+    path("worker/create/", WorkerCreate.as_view(), name="worker-create"),
     path("worker/update/<int:pk>/", WorkerUpdate.as_view(), name="worker-update"),
 ]
 

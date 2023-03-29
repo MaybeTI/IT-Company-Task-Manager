@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from company.models import Task
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
 
 class TaskForm(forms.ModelForm):
@@ -62,3 +62,53 @@ class TaskUpdateWorkersForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ("assignees",)
+
+
+class WorkerCreateForm(UserCreationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Username",
+                "class": "form-control"
+            }
+        ))
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder": "Email",
+                "class": "form-control"
+            }
+        ))
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder": "Password",
+                "class": "form-control"
+            }
+        ))
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder": "Password check",
+                "class": "form-control"
+            }
+        ))
+
+    class Meta:
+        model = get_user_model()
+        fields = ('username', 'email', 'password1', 'password2', "position")
+
+
+class WorkerUpdateForm(UserChangeForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Username", "class": "form-control"}
+        )
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
+    )
+
+    class Meta:
+        model = get_user_model()
+        fields = ("username", "email", "position",)

@@ -1,4 +1,4 @@
-{% extends "base-fullscreen.html" %}
+{% extends 'base-fullscreen.html' %}
 
 {% block title %} Sign UP {% endblock title %}
 
@@ -25,7 +25,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-5 text-center mx-auto">
-              <h1 class="text-white mb-2 mt-5">{{ object|yesno:"Update,Create" }} task</h1>
+              <h1 class="text-white mb-2 mt-5">{{ object|yesno:"Update,Create" }}</h1>
             </div>
           </div>
         </div>
@@ -34,6 +34,7 @@
         <div class="row mt-lg-n10 mt-md-n11 mt-n10">
           <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
             <div class="card z-index-0">
+
               <div class="row px-xl-5 px-sm-4 px-3">
 
                 <div class="mt-2 position-relative text-center">
@@ -41,7 +42,7 @@
                     {% if msg %}
                       <span class="text-danger">{{ msg | safe }}</span>
                     {% else %}
-                      Add task credentials
+                      Update your credentials
                     {% endif %}
                   </p>
                 </div>
@@ -63,52 +64,27 @@
                   <form role="form text-left" method="post" action="">
                       {% csrf_token %}
 
-                      <label>Name</label>
+                      <label>Username</label>
                       <div class="mb-3">
-                        {{ form.name }}
+                        {{ form.username }}
                       </div>
-                      <span class="text-danger">{{ form.name.errors }}</span>
+                      <span class="text-danger">{{ form.username.errors }}</span>
 
-                      <label>Description</label>
+                      <label>Email</label>
                       <div class="mb-3">
-                        {{ form.description }}
+                        {{ form.email }}
                       </div>
-                      <span class="text-danger">{{ form.description.errors }}</span>
+                      <span class="text-danger">{{ form.email.errors }}</span>
 
-                      <label>Deadline</label>
+                      <label>Position</label>
                       <div class="mb-3">
-                        {{ form.deadline }}
+                        {{ form.position }}
                       </div>
-                      <span class="text-danger">{{ form.deadline.errors }}</span>
-
-                      <label>Is_completed</label>
-                      <div class="mb-3">
-                        {{ form.is_completed }}
-                      </div>
-                      <span class="text-danger">{{ form.is_completed.errors }}</span>
-
-                      <label>Priority</label>
-                      <div class="mb-3">
-                        {{ form.priority }}
-                      </div>
-                      <span class="text-danger">{{ form.priority.errors }}</span>
-
-                      <label>Task_type</label>
-                      <div class="mb-3">
-                        {{ form.task_type }}
-                      </div>
-                      <span class="text-danger">{{ form.task_type.errors }}</span>
-
-                      <label>Assignees</label>
-                      <div class="mb-3">
-                        {{ form.assignees }}
-                      </div>
-                      <span class="text-danger">{{ form.assignees.errors }}</span>
+                      <span class="text-danger">{{ form.position.errors }}</span>
 
                       <div class="text-center">
                         <input type="submit" name="update" class="btn bg-gradient-dark w-100 my-4 mb-2" value="{{ object|yesno:"Update,Create" }}">
                       </div>
-
                   </form>
 
                 {% endif %}
@@ -120,11 +96,6 @@
       </div>
     </section>
 
-    {% include "includes/footer-fullscreen.html" %}
-
   </main>
 
   {% endblock content %}
-
-  <!-- Specific JS goes HERE -->
-  {% block javascripts %}{% endblock javascripts %}
