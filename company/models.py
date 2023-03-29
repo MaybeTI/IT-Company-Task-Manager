@@ -21,6 +21,7 @@ class Worker(AbstractUser):
     position = models.ForeignKey(
         Position, on_delete=models.CASCADE, related_name="workers"
     )
+    description = models.TextField(blank=True, null=True)
 
 
 class Task(models.Model):

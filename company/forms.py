@@ -112,3 +112,19 @@ class WorkerUpdateForm(UserChangeForm):
     class Meta:
         model = get_user_model()
         fields = ("username", "email", "position",)
+
+
+class WorkerUpdateDescriptionForm(forms.ModelForm):
+    description = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Description",
+                "class": "form-control",
+                "style": "height: 100px;"
+            }
+        )
+    )
+
+    class Meta:
+        model = get_user_model()
+        fields = ("description",)

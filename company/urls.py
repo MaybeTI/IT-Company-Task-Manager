@@ -12,6 +12,7 @@ from company.views import (
     WorkerDetail,
     WorkerCreate,
     WorkerUpdate,
+    WorkerUpdateDescription,
 )
 
 urlpatterns = [
@@ -30,6 +31,7 @@ urlpatterns = [
     path("worker/detail/<int:pk>/", WorkerDetail.as_view(), name="worker-detail"),
     path("worker/create/", WorkerCreate.as_view(), name="worker-create"),
     path("worker/update/<int:pk>/", WorkerUpdate.as_view(), name="worker-update"),
+    path("worker/update/<int:pk>/description", WorkerUpdateDescription.as_view(), name="worker-update-description"),
 ]
 
 app_name = "company"
