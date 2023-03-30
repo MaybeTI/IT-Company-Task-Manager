@@ -59,7 +59,9 @@ class TaskCreate(LoginRequiredMixin, generic.CreateView):
 class TaskUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy("task_manager:task-list")
+
+    def get_success_url(self):
+        return reverse_lazy("task_manager:task-detail", kwargs={"pk": self.kwargs["pk"]})
 
 
 class TaskDelete(LoginRequiredMixin, generic.DeleteView):
@@ -73,7 +75,7 @@ class TaskUpdateWorkers(LoginRequiredMixin, generic.UpdateView):
     template_name = "task_manager/task_detail.html"
 
     def get_success_url(self):
-        return reverse_lazy("task_manager:task-detail", kwargs={"pk": self.request.user.id})
+        return reverse_lazy("task_manager:task-detail", kwargs={"pk": self.kwargs["pk"]})
 
 
 class WorkerList(LoginRequiredMixin, generic.ListView):

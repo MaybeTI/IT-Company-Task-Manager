@@ -50,12 +50,8 @@
 
 
                       <div class="text-center">
-                        <button type="submit" name="register" class="btn bg-gradient-dark w-100 my-4 mb-2; text-danger">Delete</button>
-                        <button type="submit" name="register" class="btn bg-gradient-dark w-100 my-4 mb-2;">
-                          <a href="{% url 'task_manager:task-detail' pk=task.id %}" style="color: white">
-                            Cancel
-                          </a>
-                        </button>
+                        <button type="submit" name="register" class="btn bg-gradient-dark w-100 my-2 mb-0; text-danger">Delete</button>
+                        <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="btn bg-gradient-dark w-100 my-2 mb-9;">Cancel</a>
                       </div>
 
                   </form>

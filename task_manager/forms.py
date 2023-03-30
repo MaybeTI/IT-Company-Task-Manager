@@ -16,11 +16,11 @@ class TaskForm(forms.ModelForm):
         widget=forms.TextInput(attrs={"placeholder": "Name", "class": "form-control"})
     )
     description = forms.CharField(
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={
                 "placeholder": "Description",
-                "class": "form-control",
-                "style": "height: 100px;",
+                "class": "form-control auto-resize",
+                "style": "height: 100px; position: relative;",
             }
         )
     )
@@ -43,9 +43,9 @@ class TaskForm(forms.ModelForm):
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple(
             attrs={
-                "style": "width: 20px; height: 20px;",
+                "style": "width: 20px; height: 20px;"
             }
-        ),
+        )
     )
 
     class Meta:
@@ -57,8 +57,10 @@ class TaskUpdateWorkersForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple(
-            attrs={"style": "width: 20px; height: 20px;"}
-        ),
+            attrs={
+                "style": "width: 20px; height: 20px; overflow-y: scroll;"
+            }
+        )
     )
 
     class Meta:
@@ -112,11 +114,11 @@ class WorkerUpdateForm(UserChangeForm):
 
 class WorkerUpdateDescriptionForm(forms.ModelForm):
     description = forms.CharField(
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={
                 "placeholder": "Description",
-                "class": "form-control",
-                "style": "height: 100px;",
+                "class": "form-control auto-resize",
+                "style": "height: 100px; position: relative;",
             }
         )
     )

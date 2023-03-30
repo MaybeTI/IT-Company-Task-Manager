@@ -155,7 +155,7 @@
       "description": "some description",
       "deadline": "2023-04-19",
       "is_completed": false,
-      "priority": "Low",
+      "priority": "High",
       "task_type": 2,
       "assignees": [1, 2]
     }
@@ -168,7 +168,7 @@
       "description": "some description",
       "deadline": "2023-04-19",
       "is_completed": false,
-      "priority": "Low",
+      "priority": "Medium",
       "task_type": 5,
       "assignees": [3, 4]
     }
@@ -194,7 +194,7 @@
       "description": "some description",
       "deadline": "2023-04-19",
       "is_completed": false,
-      "priority": "Low",
+      "priority": "Medium",
       "task_type": 4,
       "assignees": [1, 3]
     }

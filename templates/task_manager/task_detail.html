@@ -111,15 +111,18 @@
                   {% if form %}
                     <form action="" method="post">
                       {% csrf_token %}
-                      {{ form.assignees }}
+                      <div class="mb-3" style="height: 150px; overflow-y: scroll;">
+                        {{ form.assignees }}
+                      </div>
+                      <span class="text-danger">{{ form.assignees.errors }}</span>
                       <div class="text-center">
-                        <button type="submit" name="register" class="btn bg-gradient-dark w-100 my-4 mb-2">Change</button>
+                        <button type="submit" name="register" class="btn bg-gradient-dark w-100 my-2 mb-0">Change</button>
                       </div>
                     </form>
                   {% else %}
                     {% for person in task.assignees.all %}
 
-                      <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark"><a href="">{{ person.username }}</a></strong></li>
+                      <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark"><a href="{% url 'task_manager:worker-detail' pk=person.id %}">{{ person.username }}</a></strong></li>
                     {% endfor %}
                   {% endif %}
                 </ul>
