@@ -1,7 +1,7 @@
 from datetime import date
 from django import forms
 from django.contrib.auth import get_user_model
-from task_manager.models import Task
+from task_manager.models import Task, Position
 from django.contrib.auth.forms import (
     UserChangeForm,
     UserCreationForm,
@@ -56,7 +56,7 @@ class TaskForm(forms.ModelForm):
         fields = "__all__"
 
     def clean_deadline(self):
-        deadline = self.cleaned_data['deadline']
+        deadline = self.cleaned_data["deadline"]
         deadline_date = date.fromisoformat(deadline)
         if deadline_date <= date.today():
             raise forms.ValidationError("Deadline should be a future date")
@@ -94,6 +94,11 @@ class WorkerCreateForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={"placeholder": "Password check", "class": "form-control"}
         )
+    )
+    position = forms.ModelChoiceField(
+        queryset=Position.objects.all(),
+        required=True,
+        widget=forms.Select(attrs={"class": "form-control"}),
     )
 
     class Meta:
