@@ -8,14 +8,10 @@ class ModelsTest(TestCase):
         self.task_type = TaskType.objects.create(name="test")
         self.position = Position.objects.create(name="test")
         self.worker1 = get_user_model().objects.create_user(
-            username="BobKiller",
-            password="test12345",
-            position=self.position
+            username="BobKiller", password="test12345", position=self.position
         )
         self.worker2 = get_user_model().objects.create_user(
-            username="MaxKiller",
-            password="test12345",
-            position=self.position
+            username="MaxKiller", password="test12345", position=self.position
         )
 
     def test_task_type_str(self):
