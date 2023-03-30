@@ -27,6 +27,9 @@ class Worker(AbstractUser):
     )
     description = models.TextField(blank=True, null=True)
 
+    class Meta:
+        ordering = ["username"]
+
     def __str__(self):
         return self.username
 
@@ -44,3 +47,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["name"]
