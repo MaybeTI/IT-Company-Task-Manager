@@ -1,7 +1,12 @@
 from datetime import date, timedelta
 from django.test import TestCase
 from task_manager.models import Position, TaskType, Task
-from task_manager.forms import WorkerCreateForm, WorkerUpdateForm, TaskForm, TaskUpdateWorkersForm
+from task_manager.forms import (
+    WorkerCreateForm,
+    WorkerUpdateForm,
+    TaskForm,
+    TaskUpdateWorkersForm,
+)
 from django.contrib.auth import get_user_model
 
 
@@ -19,7 +24,7 @@ class WorkerFormsTests(TestCase):
         self.update_form_data = {
             "username": "usertest",
             "email": "testuser@exam.com",
-            "position": self.position2.id
+            "position": self.position2.id,
         }
         self.worker = get_user_model().objects.create_user(
             username="testuser",
@@ -93,12 +98,12 @@ class TaskFormTests(TestCase):
             "is_completed": False,
             "priority": "Low",
             "task_type": self.task_type,
-            "assignees": [self.worker1.id, self.worker2.id]
+            "assignees": [self.worker1.id, self.worker2.id],
         }
         self.update_form_data = {
             "name": "Task",
             "is_completed": True,
-            "assignees": [self.worker1.id, self.worker2, self.worker3]
+            "assignees": [self.worker1.id, self.worker2, self.worker3],
         }
         self.task = Task.objects.create(
             name="Test task",
@@ -126,7 +131,9 @@ class TaskFormTests(TestCase):
         form = TaskUpdateWorkersForm(data=self.update_form_data, instance=self.task)
         self.assertTrue(form.is_valid())
         task = form.save()
-        self.assertCountEqual(task.assignees.all(), [self.worker1, self.worker2, self.worker3])
+        self.assertCountEqual(
+            task.assignees.all(), [self.worker1, self.worker2, self.worker3]
+        )
 
 
 class SearchFormTests(TestCase):
@@ -185,7 +192,9 @@ class SearchFormTests(TestCase):
         self.client.force_login(self.worker1)
 
     def test_task_search_form(self):
-        response = self.client.get("http://127.0.0.1:8000/task/list/?name=professional+task")
+        response = self.client.get(
+            "http://127.0.0.1:8000/task/list/?name=professional+task"
+        )
 
         self.assertContains(response, self.task1.name)
         self.assertNotContains(response, self.task2.name)
@@ -209,5 +218,3 @@ class SearchFormTests(TestCase):
         self.assertContains(response, self.worker1.username)
         self.assertContains(response, self.worker2.username)
         self.assertContains(response, self.worker3.username)
-
-
