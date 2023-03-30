@@ -1,6 +1,6 @@
 {% extends 'base-fullscreen.html' %}
 
-{% block title %} Sign UP {% endblock title %}
+{% block title %} Worker {{ object|yesno:"Update,Create" }} {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
