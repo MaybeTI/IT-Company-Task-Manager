@@ -6,6 +6,8 @@ from task_manager.forms import (
     WorkerCreateForm,
     WorkerUpdateForm,
     WorkerUpdateDescriptionForm,
+    TaskSearchForm,
+    WorkerSearchForm,
 )
 from task_manager.models import Task
 from django.urls import reverse_lazy
@@ -21,6 +23,27 @@ def index(request):
 
 class TaskList(LoginRequiredMixin, generic.ListView):
     model = Task
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = TaskSearchForm(initial={
+            "name": name
+        })
+        return context
+
+    def get_queryset(self):
+        queryset = Task.objects.all()
+
+        form = TaskSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+
+        return queryset
 
 
 class TaskDetail(LoginRequiredMixin, generic.DetailView):
@@ -55,6 +78,27 @@ class TaskUpdateWorkers(LoginRequiredMixin, generic.UpdateView):
 
 class WorkerList(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        username = self.request.GET.get("username", "")
+
+        context["search_form"] = WorkerSearchForm(initial={
+            "username": username
+        })
+        return context
+
+    def get_queryset(self):
+        queryset = get_user_model().objects.all()
+
+        form = WorkerSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(username__icontains=form.cleaned_data["username"])
+
+        return queryset
 
 
 class WorkerDetail(LoginRequiredMixin, generic.DetailView):
@@ -70,7 +114,9 @@ class WorkerCreate(generic.CreateView):
 class WorkerUpdate(LoginRequiredMixin, generic.UpdateView):
     model = get_user_model()
     form_class = WorkerUpdateForm
-    success_url = reverse_lazy("task_manager:worker-list")
+
+    def get_success_url(self):
+        return reverse_lazy("task_manager:worker-detail", kwargs={"pk": self.request.user.id})
 
 
 class WorkerUpdateDescription(LoginRequiredMixin, generic.UpdateView):

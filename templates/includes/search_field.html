@@ -1,0 +1,9 @@
+<form action="" method="get" class="form-inline">
+  {% csrf_token %}
+  <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+    <div class="input-group">
+      {{ search_form.as_p }}
+      <input type="submit" class="btn btn-primary" value="🔎">
+    </div>
+  </div>
+</form>

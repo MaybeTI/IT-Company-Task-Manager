@@ -2,13 +2,14 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 
-from task_manager.models import Worker, TaskType, Task, Position
+from task_manager.models import Worker, TaskType, Task, Position, Team
 
 admin.site.unregister(Group)
 
 admin.site.register(TaskType)
 admin.site.register(Task)
 admin.site.register(Position)
+admin.site.register(Team)
 
 
 @admin.register(Worker)

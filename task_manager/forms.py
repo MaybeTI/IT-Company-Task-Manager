@@ -42,7 +42,9 @@ class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple(
-            attrs={"style": "width: 20px; height: 20px;"}
+            attrs={
+                "style": "width: 20px; height: 20px;",
+            }
         ),
     )
 
@@ -122,3 +124,21 @@ class WorkerUpdateDescriptionForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ("description",)
+
+
+class TaskSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by task", "class": "form-control"})
+    )
+
+
+class WorkerSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by worker", "class": "form-control"})
+    )
