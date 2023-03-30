@@ -27,7 +27,7 @@ class WorkerFormsTests(TestCase):
             "position": self.position2.id,
         }
         self.worker = get_user_model().objects.create_user(
-            username="testuser",
+            username="testusertest",
             email="testuser@example.com",
             password="mypassword",
             position=self.position1,
@@ -47,6 +47,7 @@ class WorkerFormsTests(TestCase):
         self.assertEqual(len(form.errors), 5)
 
     def test_worker_creation_form_with_duplicate_username(self):
+        self.form_data["username"] = "testusertest"
         form = WorkerCreateForm(data=self.form_data)
         self.assertFalse(form.is_valid())
 
