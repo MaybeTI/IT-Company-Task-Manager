@@ -17,9 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from it_company import settings
+from django.contrib.auth.views import LoginView
+from task_manager.forms import LoginForm
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path(
+        "registration/login/",
+        LoginView.as_view(
+            template_name="registration/login.html", authentication_form=LoginForm
+        ),
+        name="login",
+    ),
     path("registration/", include("django.contrib.auth.urls")),
     path("", include("task_manager.urls", namespace="task_manager")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

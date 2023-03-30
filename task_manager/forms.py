@@ -1,7 +1,12 @@
+from datetime import date
 from django import forms
 from django.contrib.auth import get_user_model
 from task_manager.models import Task
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import (
+    UserChangeForm,
+    UserCreationForm,
+    AuthenticationForm,
+)
 
 
 class TaskForm(forms.ModelForm):
@@ -42,25 +47,28 @@ class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple(
-            attrs={
-                "style": "width: 20px; height: 20px;"
-            }
-        )
+            attrs={"style": "width: 20px; height: 20px;"}
+        ),
     )
 
     class Meta:
         model = Task
         fields = "__all__"
 
+    def clean_deadline(self):
+        deadline = self.cleaned_data['deadline']
+        deadline_date = date.fromisoformat(deadline)
+        if deadline_date <= date.today():
+            raise forms.ValidationError("Deadline should be a future date")
+        return deadline
+
 
 class TaskUpdateWorkersForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple(
-            attrs={
-                "style": "width: 20px; height: 20px; overflow-y: scroll;"
-            }
-        )
+            attrs={"style": "width: 20px; height: 20px; overflow-y: scroll;"}
+        ),
     )
 
     class Meta:
@@ -133,7 +141,9 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task", "class": "form-control"})
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by task", "class": "form-control"}
+        ),
     )
 
 
@@ -142,5 +152,23 @@ class WorkerSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by worker", "class": "form-control"})
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by worker", "class": "form-control"}
+        ),
+    )
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={"placeholder": "Username", "class": "form-control"}
+        ),
+    )
+    password = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Password", "class": "form-control"}
+        ),
     )

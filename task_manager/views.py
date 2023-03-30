@@ -30,9 +30,7 @@ class TaskList(LoginRequiredMixin, generic.ListView):
 
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = TaskSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = TaskSearchForm(initial={"name": name})
         return context
 
     def get_queryset(self):
@@ -61,7 +59,9 @@ class TaskUpdate(LoginRequiredMixin, generic.UpdateView):
     form_class = TaskForm
 
     def get_success_url(self):
-        return reverse_lazy("task_manager:task-detail", kwargs={"pk": self.kwargs["pk"]})
+        return reverse_lazy(
+            "task_manager:task-detail", kwargs={"pk": self.kwargs["pk"]}
+        )
 
 
 class TaskDelete(LoginRequiredMixin, generic.DeleteView):
@@ -75,7 +75,9 @@ class TaskUpdateWorkers(LoginRequiredMixin, generic.UpdateView):
     template_name = "task_manager/task_detail.html"
 
     def get_success_url(self):
-        return reverse_lazy("task_manager:task-detail", kwargs={"pk": self.kwargs["pk"]})
+        return reverse_lazy(
+            "task_manager:task-detail", kwargs={"pk": self.kwargs["pk"]}
+        )
 
 
 class WorkerList(LoginRequiredMixin, generic.ListView):
@@ -87,9 +89,7 @@ class WorkerList(LoginRequiredMixin, generic.ListView):
 
         username = self.request.GET.get("username", "")
 
-        context["search_form"] = WorkerSearchForm(initial={
-            "username": username
-        })
+        context["search_form"] = WorkerSearchForm(initial={"username": username})
         return context
 
     def get_queryset(self):
@@ -118,7 +118,9 @@ class WorkerUpdate(LoginRequiredMixin, generic.UpdateView):
     form_class = WorkerUpdateForm
 
     def get_success_url(self):
-        return reverse_lazy("task_manager:worker-detail", kwargs={"pk": self.request.user.id})
+        return reverse_lazy(
+            "task_manager:worker-detail", kwargs={"pk": self.request.user.id}
+        )
 
 
 class WorkerUpdateDescription(LoginRequiredMixin, generic.UpdateView):
