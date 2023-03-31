@@ -34,7 +34,7 @@ class TaskList(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Task.objects.all()
+        queryset = Task.objects.select_related("task_type").all()
 
         form = TaskSearchForm(self.request.GET)
 
@@ -93,7 +93,7 @@ class WorkerList(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = get_user_model().objects.all()
+        queryset = get_user_model().objects.select_related("position").all()
 
         form = WorkerSearchForm(self.request.GET)
 
@@ -105,6 +105,7 @@ class WorkerList(LoginRequiredMixin, generic.ListView):
 
 class WorkerDetail(LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
+    queryset = get_user_model().objects.select_related("position").prefetch_related("tasks").all()
 
 
 class WorkerCreate(generic.CreateView):
