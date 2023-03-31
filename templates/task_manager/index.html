@@ -76,7 +76,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% for task in user.tasks.all %}
+                    {% for task in user_tasks %}
                         <tr>
                           <td>
                             <a href="{% url 'task_manager:task-detail' pk=task.id %}">

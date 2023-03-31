@@ -18,7 +18,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    return render(request, "task_manager/index.html")
+    user_tasks = request.user.tasks.select_related("task_type")
+    context = {
+        "user_tasks": user_tasks
+    }
+    return render(request, "task_manager/index.html", context=context)
 
 
 class TaskList(LoginRequiredMixin, generic.ListView):
@@ -34,7 +38,7 @@ class TaskList(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Task.objects.select_related("task_type").all()
+        queryset = Task.objects.select_related("task_type")
 
         form = TaskSearchForm(self.request.GET)
 
@@ -93,7 +97,7 @@ class WorkerList(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = get_user_model().objects.select_related("position").all()
+        queryset = get_user_model().objects.select_related("position")
 
         form = WorkerSearchForm(self.request.GET)
 
@@ -105,7 +109,7 @@ class WorkerList(LoginRequiredMixin, generic.ListView):
 
 class WorkerDetail(LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
-    queryset = get_user_model().objects.select_related("position").prefetch_related("tasks").all()
+    queryset = get_user_model().objects.select_related("position").prefetch_related("tasks")
 
 
 class WorkerCreate(generic.CreateView):
