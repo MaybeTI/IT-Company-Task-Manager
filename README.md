@@ -6,6 +6,11 @@ Best task manager for you
 
 [IT-Company-Task-Manager deployed to Render](https://it-company-task-manager-b4pe.onrender.com)
 
+## Credential for testing:
+ ```
+ Login: user
+ Password: user12345
+ ```
 ## Installation
 
  Python3 must be already installed
