@@ -24,13 +24,13 @@ from task_manager.forms import LoginForm
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
-        "registration/login/",
+        "accounts/login/",
         LoginView.as_view(
             template_name="registration/login.html", authentication_form=LoginForm
         ),
         name="login",
     ),
-    path("registration/", include("django.contrib.auth.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("", include("task_manager.urls", namespace="task_manager")),
     path('__debug__/', include('debug_toolbar.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
