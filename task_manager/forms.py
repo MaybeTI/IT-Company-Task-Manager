@@ -13,7 +13,7 @@ class TaskForm(forms.ModelForm):
     CHOICES = (
         (None, "Select a priority"),
         ("Low", "Low"),
-        ("Middle", "Middle"),
+        ("Medium", "Medium"),
         ("High", "High"),
     )
 
