@@ -11,31 +11,51 @@
           <span class="navbar-toggler-bar bar3"></span>
         </span>
       </button>
+
+
+
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav mx-auto ms-xl-auto">
+         {% if not user %}
 
-          <li class="nav-item">
-            <a class="nav-link me-10" href="{% url 'task_manager:worker-create' %}">
-              <i class="fas fa-user-circle opacity-6 me-1"></i>
-              Sign Up
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link me-10" href="{% url 'task_manager:worker-create' %}">
+                <i class="fas fa-user-circle opacity-6 me-1"></i>
+                Sign Up
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link me-10" href="{% url 'login' %}">
-              <i class="fas fa-key opacity-6 me-1"></i>
-              Sign In
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link me-10" href="{% url 'login' %}">
+                <i class="fas fa-key opacity-6 me-1"></i>
+                Sign In
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <label for="theme-switch" class="nav-link me-10">
-              <i class="fa fa-sun cursor-pointer opacity-6" id="theme-indicator"></i>
-              Theme
-            </label>
-            <input type="checkbox" class="d-none" id="theme-switch"/>
-          </li>
-
+            <li class="nav-item">
+              <label for="theme-switch" class="nav-link me-10">
+                <i class="fa fa-sun cursor-pointer opacity-6" id="theme-indicator"></i>
+                Theme
+              </label>
+              <input type="checkbox" class="d-none" id="theme-switch"/>
+            </li>
+         {% else %}
+            <li class="nav-item">
+              <a class="nav-link me-10" href="{% url 'task_manager:index' %}">
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-10" href="{% url 'task_manager:task-list' %}">
+                Task list
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-10" href="{% url 'task_manager:worker-list' %}">
+                Worker list
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </div>
