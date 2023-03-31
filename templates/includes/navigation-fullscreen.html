@@ -16,7 +16,7 @@
 
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav mx-auto ms-xl-auto">
-         {% if not user %}
+         {% if not request.user.is_authenticated %}
 
             <li class="nav-item">
               <a class="nav-link me-10" href="{% url 'task_manager:worker-create' %}">
