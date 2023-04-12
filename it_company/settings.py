@@ -146,4 +146,4 @@ STATIC_ROOT = "staticfiles/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-ASSETS_ROOT = "/static/assets/"
+ASSETS_ROOT = "/static/assets"
