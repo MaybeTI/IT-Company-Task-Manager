@@ -1,10 +1,24 @@
-# IT-Company-Task-Manager
+# IT Company Task Manager
 
 Best task manager for you
 
 ## Check it out!
 
 [IT-Company-Task-Manager deployed to Render](https://it-company-task-manager-b4pe.onrender.com)
+
+## About the project
+The IT Company Task Manager project is a software tool designed to streamline task management 
+processes within an organization. This project provides an easy-to-use interface for programmers 
+to view and manage tasks assigned to them, as well as collaborate with team members on project-related activities.
+
+The Task Manager project enables programmers to track task progress, monitor project timelines, 
+and prioritize assignments. It also facilitates seamless communication between team members, 
+enabling them to discuss task-related issues and share updates in real-time. 
+
+With its user-friendly interface and robust feature set, the IT Company Task Manager project 
+empowers programmers to increase their productivity, manage their workload more efficiently, 
+and ultimately deliver high-quality work on time. Whether working on small or large-scale projects, 
+this project is an invaluable tool for any programmer looking to enhance their task management capabilities.
 
 ## Credential for testing:
  ```
