@@ -1,0 +1,215 @@
+[
+  {
+    "model": "task_manager.tasktype",
+    "pk": 1,
+    "fields": {
+      "name": "Bug"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 2,
+    "fields": {
+      "name": "New feature"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 3,
+    "fields": {
+      "name": "Breaking change"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 4,
+    "fields": {
+      "name": "Refactoring"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 5,
+    "fields": {
+      "name": "QA"
+    }
+  },
+
+  {
+    "model": "task_manager.position",
+    "pk": 1,
+    "fields": {
+      "name": "Developer"
+    }
+  },
+  {
+    "model": "task_manager.position",
+    "pk": 2,
+    "fields": {
+      "name": "Project Manager"
+    }
+  },
+  {
+    "model": "task_manager.position",
+    "pk": 3,
+    "fields": {
+      "name": "QA"
+    }
+  },
+  {
+    "model": "task_manager.position",
+    "pk": 4,
+    "fields": {
+      "name": "Designer"
+    }
+  },
+  {
+    "model": "task_manager.position",
+    "pk": 5,
+    "fields": {
+      "name": "DevOps"
+    }
+  },
+
+  {
+    "model": "task_manager.worker",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "joyce.byers",
+      "first_name": "Joyce",
+      "last_name": "Byers",
+      "email": "joyce.byers@task_manager.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "position": 1,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$QtPol3T7x9quBj4BnbnVwW$UwT4kihkRfSvQEWEeuqVKwMgis2ikKVZfJDBcQMvOKY=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jim.hopper",
+      "first_name": "Jim",
+      "last_name": "Hopper",
+      "email": "jim.hopper@task_manager.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:19:09Z",
+      "position": 2,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jonathan.byers",
+      "first_name": "Jonathan",
+      "last_name": "Byers",
+      "email": "jonathan.byers@task_manager.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:19:09Z",
+      "position": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+    {
+    "model": "task_manager.worker",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "dustin.henderson",
+      "first_name": "Dustin",
+      "last_name": "Henderson",
+      "email": "dustin.henderson@task_manager.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "position": 4,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 1,
+    "fields": {
+      "name": "Provide new feature",
+      "description": "some description",
+      "deadline": "2023-04-19",
+      "is_completed": false,
+      "priority": "High",
+      "task_type": 2,
+      "assignees": [1, 2]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 2,
+    "fields": {
+      "name": "Tests",
+      "description": "some description",
+      "deadline": "2023-04-19",
+      "is_completed": false,
+      "priority": "Medium",
+      "task_type": 5,
+      "assignees": [3, 4]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 3,
+    "fields": {
+      "name": "Fix bugs",
+      "description": "some description",
+      "deadline": "2023-04-19",
+      "is_completed": false,
+      "priority": "Low",
+      "task_type": 1,
+      "assignees": [2]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 4,
+    "fields": {
+      "name": "Refactor",
+      "description": "some description",
+      "deadline": "2023-04-19",
+      "is_completed": false,
+      "priority": "Medium",
+      "task_type": 4,
+      "assignees": [1, 3]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 5,
+    "fields": {
+      "name": "Change",
+      "description": "some description",
+      "deadline": "2023-04-19",
+      "is_completed": false,
+      "priority": "Low",
+      "task_type": 3,
+      "assignees": [1, 4]
+    }
+  }
+]
